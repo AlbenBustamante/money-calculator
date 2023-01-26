@@ -1,5 +1,7 @@
 package com.alnicode.calculator.view;
 
+import com.alnicode.calculator.controller.CashController;
+
 import javax.swing.*;
 import java.util.function.Function;
 
@@ -15,6 +17,7 @@ public class MainView extends JFrame {
     private final JSeparator spBillTitle, spFinal, spMoneyTitle, spVertical;
     private final JTextField tfFifty, tfFiftyThousand, tfFiveHundred, tfFiveThousand, tfHundredThousand, tfOneHundred,
             tfOneThousand, tfTenThousand, tfTwentyThousand, tfTwoHundred, tfTwoThousand;
+    private final CashController controller;
 
     public MainView() {
         pCenter = new JPanel();
@@ -65,6 +68,7 @@ public class MainView extends JFrame {
         btCalculate = new JButton();
         lbTotal = new JLabel();
         spFinal = new JSeparator();
+        controller = CashController.getInstance(this);
 
         initComponents();
     }
@@ -427,19 +431,7 @@ public class MainView extends JFrame {
         final var menu = new JMenu("limpiar");
         final var cleaner = new JMenuItem("todo");
 
-        cleaner.addActionListener(l -> {
-            tfHundredThousand.setText("0");
-            tfFiftyThousand.setText("0");
-            tfTwentyThousand.setText("0");
-            tfTenThousand.setText("0");
-            tfFiveThousand.setText("0");
-            tfTwoThousand.setText("0");
-            tfOneThousand.setText("0");
-            tfFiveHundred.setText("0");
-            tfTwoHundred.setText("0");
-            tfOneHundred.setText("0");
-            tfFifty.setText("0");
-        });
+        cleaner.addActionListener(l -> controller.clean());
 
         menu.add(cleaner);
         menuBar.add(menu);
@@ -493,6 +485,50 @@ public class MainView extends JFrame {
 
     private Function<Integer, String> toCurrency() {
         return text -> "$" + text;
+    }
+
+    public JTextField getTfFifty() {
+        return tfFifty;
+    }
+
+    public JTextField getTfFiftyThousand() {
+        return tfFiftyThousand;
+    }
+
+    public JTextField getTfFiveHundred() {
+        return tfFiveHundred;
+    }
+
+    public JTextField getTfFiveThousand() {
+        return tfFiveThousand;
+    }
+
+    public JTextField getTfHundredThousand() {
+        return tfHundredThousand;
+    }
+
+    public JTextField getTfOneHundred() {
+        return tfOneHundred;
+    }
+
+    public JTextField getTfOneThousand() {
+        return tfOneThousand;
+    }
+
+    public JTextField getTfTenThousand() {
+        return tfTenThousand;
+    }
+
+    public JTextField getTfTwentyThousand() {
+        return tfTwentyThousand;
+    }
+
+    public JTextField getTfTwoHundred() {
+        return tfTwoHundred;
+    }
+
+    public JTextField getTfTwoThousand() {
+        return tfTwoThousand;
     }
 
 }
