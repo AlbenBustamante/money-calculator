@@ -4,8 +4,10 @@ import com.alnicode.calculator.controller.CashController;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-public class MainView extends JFrame {
+public class MainView extends JFrame implements ActionListener {
 
     private final JButton btCalculate;
     private final JLabel lbBillAmount, lbBillTitle, lbBillTotal, lbBillValue, lbFiveThousand, lbFifty, lbFiftyThousand,
@@ -75,21 +77,17 @@ public class MainView extends JFrame {
 
     private void initComponents() {
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-
-        btCalculate.setFont(new Font("Segoe UI", Font.PLAIN, 24));
-        btCalculate.setCursor(new Cursor(Cursor.HAND_CURSOR));
-        btCalculate.addActionListener(l -> {
-            try {
-                controller.calculate();
-            } catch (Exception ex) {
-                JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-            }
-        });
-
+        button();
         design();
         menuBar();
         pack();
         setLocationRelativeTo(null);
+    }
+
+    private void button() {
+        btCalculate.setFont(new Font("Segoe UI", Font.PLAIN, 24));
+        btCalculate.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        btCalculate.addActionListener(this);
     }
 
     private void menuBar() {
@@ -110,6 +108,7 @@ public class MainView extends JFrame {
 
         tf.setFont(new Font("Segoe UI", Font.PLAIN, 14));
         tf.setHorizontalAlignment(JTextField.RIGHT);
+        tf.addActionListener(this);
 
         return tf;
     }
@@ -405,6 +404,19 @@ public class MainView extends JFrame {
 
     public JLabel lbTotalTwoThousand() {
         return lbTotalTwoThousand;
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        final var source = e.getSource();
+
+        if (source instanceof JTextField || source == btCalculate) {
+            try {
+                controller.calculate();
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        }
     }
 
 }
