@@ -5,16 +5,20 @@ import com.alnicode.calculator.model.CashReq;
 import com.alnicode.calculator.service.CashService;
 import com.alnicode.calculator.view.MainView;
 
+import java.text.NumberFormat;
+import java.util.Locale;
 import java.util.function.Function;
 
 public class CashController {
     private static CashController instance;
     private final MainView view;
     private final CashService service;
+    private final Locale locale;
 
     private CashController(final MainView view) {
         this.view = view;
         this.service = CashService.instance();
+        this.locale = new Locale("es", "CO");
     }
 
     public static CashController getInstance(final MainView view) {
@@ -75,11 +79,11 @@ public class CashController {
         view.lbTotalTwoHundred().setText(toCurrency().apply(cash.twoHundred()));
         view.lbTotalOneHundred().setText(toCurrency().apply(cash.oneHundred()));
         view.lbTotalFifty().setText(toCurrency().apply(cash.fifty()));
-        view.lbTotal().setText(toCurrency().apply(cash.result()));
+        view.lbTotal().setText("Total: " + toCurrency().apply(cash.result()));
     }
 
     private Function<Integer, String> toCurrency() {
-        return value -> "$" + value;
+        return value -> "$" + NumberFormat.getInstance(locale).format(value);
     }
 
 }
