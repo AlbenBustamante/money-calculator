@@ -67,7 +67,7 @@ public class MainView extends JFrame {
         lbTotalOneHundred = label("1.000", "right_plain");
         lbTotalFifty = label("250", "right_plain");
         btCalculate = new JButton("Calcular");
-        lbTotal = new JLabel("Total: $13.159.250");
+        lbTotal = label("Total: $13.159.250", "total");
         spFinal = new JSeparator();
         controller = CashController.getInstance(this);
 
@@ -80,9 +80,6 @@ public class MainView extends JFrame {
         btCalculate.setFont(new Font("Segoe UI", Font.PLAIN, 24));
         btCalculate.setCursor(new Cursor(Cursor.HAND_CURSOR));
         btCalculate.addActionListener(l -> calculate());
-
-        lbTotal.setFont(new Font("Segoe UI", Font.BOLD, 36));
-        lbTotal.setHorizontalAlignment(SwingConstants.CENTER);
 
         design();
         menuBar();
@@ -116,16 +113,12 @@ public class MainView extends JFrame {
         final var lb = new JLabel(style.contains("plain") ? "$" + text : text);
 
         lb.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+        lb.setHorizontalAlignment(SwingConstants.CENTER);
 
         switch (style) {
-            case "title" -> {
-                lb.setFont(new Font("Segoe UI", Font.BOLD, 24));
-                lb.setHorizontalAlignment(SwingConstants.CENTER);
-            }
-            case "subtitle" -> {
-                lb.setFont(new Font("Segoe UI", Font.BOLD, 18));
-                lb.setHorizontalAlignment(SwingConstants.CENTER);
-            }
+            case "title" -> lb.setFont(new Font("Segoe UI", Font.BOLD, 24));
+            case "subtitle" -> lb.setFont(new Font("Segoe UI", Font.BOLD, 18));
+            case "total" -> lb.setFont(new Font("Segoe UI", Font.BOLD, 36));
             case "left_plain" -> lb.setHorizontalAlignment(SwingConstants.LEFT);
             case "right_plain" -> lb.setHorizontalAlignment(SwingConstants.RIGHT);
         }
