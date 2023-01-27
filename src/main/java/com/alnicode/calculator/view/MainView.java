@@ -3,12 +3,13 @@ package com.alnicode.calculator.view;
 import com.alnicode.calculator.controller.CashController;
 
 import javax.swing.*;
+import java.awt.*;
 import java.util.function.Function;
 
 public class MainView extends JFrame {
 
     private final JButton btCalculate;
-    private final JLabel lbBillAmount, lbBillTitle, lbBillTotal, lbBillValue, lbFIveThousand, lbFifty, lbFiftyThousand,
+    private final JLabel lbBillAmount, lbBillTitle, lbBillTotal, lbBillValue, lbFiveThousand, lbFifty, lbFiftyThousand,
             lbFiveHundred, lbHundredThousand, lbMoneyAmount, lbMoneyTitle, lbMoneyTotal, lbMoneyValue, lbOneHundred,
             lbOneThousand, lbTenThousand, lbTotal, lbTotalFifty, lbTotalFiftyThousand, lbTotalFiveHundred, lbTotalFiveThousand,
             lbTotalHundredThousand, lbTotalOneHundred, lbTotalOneThousand, lbTotalTenThousand, lbTotalTwentyThousand,
@@ -21,52 +22,52 @@ public class MainView extends JFrame {
 
     public MainView() {
         pCenter = new JPanel();
-        lbBillTitle = new JLabel();
+        lbBillTitle = label("Billete", "title");
         spBillTitle = new JSeparator();
-        lbBillAmount = new JLabel();
-        tfHundredThousand = new JTextField();
-        tfFiftyThousand = new JTextField();
-        tfTwentyThousand = new JTextField();
-        tfTenThousand = new JTextField();
-        tfFiveThousand = new JTextField();
-        tfTwoThousand = new JTextField();
-        lbBillValue = new JLabel();
-        lbHundredThousand = new JLabel();
-        lbFiftyThousand = new JLabel();
-        lbTwentyThousand = new JLabel();
-        lbTenThousand = new JLabel();
-        lbFIveThousand = new JLabel();
-        lbTwoThousand = new JLabel();
-        lbBillTotal = new JLabel();
-        lbTotalHundredThousand = new JLabel();
-        lbTotalFiftyThousand = new JLabel();
-        lbTotalTwentyThousand = new JLabel();
-        lbTotalTenThousand = new JLabel();
-        lbTotalFiveThousand = new JLabel();
-        lbTotalTwoThousand = new JLabel();
-        spVertical = new JSeparator();
-        lbMoneyTitle = new JLabel();
+        lbBillAmount = label("Cantidad", "subtitle");
+        tfHundredThousand = textField("100");
+        tfFiftyThousand = textField("50");
+        tfTwentyThousand = textField("20");
+        tfTenThousand = textField("10");
+        tfFiveThousand = textField("5");
+        tfTwoThousand = textField("2");
+        lbBillValue = label("Valor", "subtitle");
+        lbHundredThousand = label("100.000", "left_plain");
+        lbFiftyThousand = label("50.000", "left_plain");
+        lbTwentyThousand = label("20.000", "left_plain");
+        lbTenThousand = label("10.000", "left_plain");
+        lbFiveThousand = label("5.000", "left_plain");
+        lbTwoThousand = label("2.000", "left_plain");
+        lbBillTotal = label("Total", "subtitle");
+        lbTotalHundredThousand = label("10.000.000", "right_plain");
+        lbTotalFiftyThousand = label("2.500.000", "right_plain");
+        lbTotalTwentyThousand = label("400.000", "right_plain");
+        lbTotalTenThousand = label("100.000", "right_plain");
+        lbTotalFiveThousand = label("25.000", "right_plain");
+        lbTotalTwoThousand = label("4.000", "right_plain");
+        spVertical = new JSeparator(SwingConstants.VERTICAL);
+        lbMoneyTitle = label("Moneda", "title");
         spMoneyTitle = new JSeparator();
-        lbMoneyAmount = new JLabel();
-        tfOneThousand = new JTextField();
-        tfFiveHundred = new JTextField();
-        tfTwoHundred = new JTextField();
-        tfOneHundred = new JTextField();
-        tfFifty = new JTextField();
-        lbMoneyValue = new JLabel();
-        lbOneThousand = new JLabel();
-        lbFiveHundred = new JLabel();
-        lbTwoHundred = new JLabel();
-        lbOneHundred = new JLabel();
-        lbFifty = new JLabel();
-        lbMoneyTotal = new JLabel();
-        lbTotalOneThousand = new JLabel();
-        lbTotalFiveHundred = new JLabel();
-        lbTotalTwoHundred = new JLabel();
-        lbTotalOneHundred = new JLabel();
-        lbTotalFifty = new JLabel();
-        btCalculate = new JButton();
-        lbTotal = new JLabel();
+        lbMoneyAmount = label("Cantidad", "subtitle");
+        tfOneThousand = textField("100");
+        tfFiveHundred = textField("50");
+        tfTwoHundred = textField("20");
+        tfOneHundred = textField("10");
+        tfFifty = textField("5");
+        lbMoneyValue = label("Valor", "subtitle");
+        lbOneThousand = label("1.000", "left_plain");
+        lbFiveHundred = label("500", "left_plain");
+        lbTwoHundred = label("200", "left_plain");
+        lbOneHundred = label("100", "left_plain");
+        lbFifty = label("50", "left_plain");
+        lbMoneyTotal = label("Total", "subtitle");
+        lbTotalOneThousand = label("100.000", "right_plain");
+        lbTotalFiveHundred = label("25.000", "right_plain");
+        lbTotalTwoHundred = label("4.000", "right_plain");
+        lbTotalOneHundred = label("1.000", "right_plain");
+        lbTotalFifty = label("250", "right_plain");
+        btCalculate = new JButton("Calcular");
+        lbTotal = new JLabel("Total: $13.159.250");
         spFinal = new JSeparator();
         controller = CashController.getInstance(this);
 
@@ -76,182 +77,65 @@ public class MainView extends JFrame {
     private void initComponents() {
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
-        lbBillTitle.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        lbBillTitle.setHorizontalAlignment(SwingConstants.CENTER);
-        lbBillTitle.setText("Billete");
-
-        lbBillAmount.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        lbBillAmount.setHorizontalAlignment(SwingConstants.CENTER);
-        lbBillAmount.setText("Cantidad");
-
-        tfHundredThousand.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        tfHundredThousand.setHorizontalAlignment(JTextField.RIGHT);
-        tfHundredThousand.setText("100");
-
-        tfFiftyThousand.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        tfFiftyThousand.setHorizontalAlignment(JTextField.RIGHT);
-        tfFiftyThousand.setText("50");
-
-        tfTwentyThousand.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        tfTwentyThousand.setHorizontalAlignment(JTextField.RIGHT);
-        tfTwentyThousand.setText("20");
-
-        tfTenThousand.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        tfTenThousand.setHorizontalAlignment(JTextField.RIGHT);
-        tfTenThousand.setText("10");
-
-        tfFiveThousand.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        tfFiveThousand.setHorizontalAlignment(JTextField.RIGHT);
-        tfFiveThousand.setText("5");
-
-        tfTwoThousand.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        tfTwoThousand.setHorizontalAlignment(JTextField.RIGHT);
-        tfTwoThousand.setText("2");
-
-        lbBillValue.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        lbBillValue.setHorizontalAlignment(SwingConstants.CENTER);
-        lbBillValue.setText("Valor");
-
-        lbHundredThousand.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        lbHundredThousand.setHorizontalAlignment(SwingConstants.LEFT);
-        lbHundredThousand.setText("$100.000");
-
-        lbFiftyThousand.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        lbFiftyThousand.setHorizontalAlignment(SwingConstants.LEFT);
-        lbFiftyThousand.setText("$50.000");
-
-        lbTwentyThousand.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        lbTwentyThousand.setHorizontalAlignment(SwingConstants.LEFT);
-        lbTwentyThousand.setText("$20.000");
-
-        lbTenThousand.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        lbTenThousand.setHorizontalAlignment(SwingConstants.LEFT);
-        lbTenThousand.setText("$10.000");
-
-        lbFIveThousand.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        lbFIveThousand.setHorizontalAlignment(SwingConstants.LEFT);
-        lbFIveThousand.setText("$5.000");
-
-        lbTwoThousand.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        lbTwoThousand.setHorizontalAlignment(SwingConstants.LEFT);
-        lbTwoThousand.setText("$2.000");
-
-        lbBillTotal.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        lbBillTotal.setHorizontalAlignment(SwingConstants.CENTER);
-        lbBillTotal.setText("Total");
-
-        lbTotalHundredThousand.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        lbTotalHundredThousand.setHorizontalAlignment(SwingConstants.RIGHT);
-        lbTotalHundredThousand.setText("$10.000.000");
-
-        lbTotalFiftyThousand.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        lbTotalFiftyThousand.setHorizontalAlignment(SwingConstants.RIGHT);
-        lbTotalFiftyThousand.setText("$2.500.000");
-
-        lbTotalTwentyThousand.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        lbTotalTwentyThousand.setHorizontalAlignment(SwingConstants.RIGHT);
-        lbTotalTwentyThousand.setText("$400.000");
-
-        lbTotalTenThousand.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        lbTotalTenThousand.setHorizontalAlignment(SwingConstants.RIGHT);
-        lbTotalTenThousand.setText("$100.000");
-
-        lbTotalFiveThousand.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        lbTotalFiveThousand.setHorizontalAlignment(SwingConstants.RIGHT);
-        lbTotalFiveThousand.setText("$25.000");
-
-        lbTotalTwoThousand.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        lbTotalTwoThousand.setHorizontalAlignment(SwingConstants.RIGHT);
-        lbTotalTwoThousand.setText("$4.000");
-
-        spVertical.setOrientation(SwingConstants.VERTICAL);
-
-        lbMoneyTitle.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        lbMoneyTitle.setHorizontalAlignment(SwingConstants.CENTER);
-        lbMoneyTitle.setText("Moneda");
-
-        lbMoneyAmount.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        lbMoneyAmount.setHorizontalAlignment(SwingConstants.CENTER);
-        lbMoneyAmount.setText("Cantidad");
-
-        tfOneThousand.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        tfOneThousand.setHorizontalAlignment(JTextField.RIGHT);
-        tfOneThousand.setText("100");
-
-        tfFiveHundred.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        tfFiveHundred.setHorizontalAlignment(JTextField.RIGHT);
-        tfFiveHundred.setText("50");
-
-        tfTwoHundred.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        tfTwoHundred.setHorizontalAlignment(JTextField.RIGHT);
-        tfTwoHundred.setText("20");
-
-        tfOneHundred.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        tfOneHundred.setHorizontalAlignment(JTextField.RIGHT);
-        tfOneHundred.setText("10");
-
-        tfFifty.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        tfFifty.setHorizontalAlignment(JTextField.RIGHT);
-        tfFifty.setText("5");
-
-        lbMoneyValue.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        lbMoneyValue.setHorizontalAlignment(SwingConstants.CENTER);
-        lbMoneyValue.setText("Valor");
-
-        lbOneThousand.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        lbOneThousand.setHorizontalAlignment(SwingConstants.LEFT);
-        lbOneThousand.setText("$1.000");
-
-        lbFiveHundred.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        lbFiveHundred.setHorizontalAlignment(SwingConstants.LEFT);
-        lbFiveHundred.setText("$500");
-
-        lbTwoHundred.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        lbTwoHundred.setHorizontalAlignment(SwingConstants.LEFT);
-        lbTwoHundred.setText("$200");
-
-        lbOneHundred.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        lbOneHundred.setHorizontalAlignment(SwingConstants.LEFT);
-        lbOneHundred.setText("$100");
-
-        lbFifty.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        lbFifty.setHorizontalAlignment(SwingConstants.LEFT);
-        lbFifty.setText("$50");
-
-        lbMoneyTotal.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        lbMoneyTotal.setHorizontalAlignment(SwingConstants.CENTER);
-        lbMoneyTotal.setText("Total");
-
-        lbTotalOneThousand.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        lbTotalOneThousand.setHorizontalAlignment(SwingConstants.RIGHT);
-        lbTotalOneThousand.setText("$100.000");
-
-        lbTotalFiveHundred.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        lbTotalFiveHundred.setHorizontalAlignment(SwingConstants.RIGHT);
-        lbTotalFiveHundred.setText("$25.000");
-
-        lbTotalTwoHundred.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        lbTotalTwoHundred.setHorizontalAlignment(SwingConstants.RIGHT);
-        lbTotalTwoHundred.setText("$4.000");
-
-        lbTotalOneHundred.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        lbTotalOneHundred.setHorizontalAlignment(SwingConstants.RIGHT);
-        lbTotalOneHundred.setText("$1.000");
-
-        lbTotalFifty.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        lbTotalFifty.setHorizontalAlignment(SwingConstants.RIGHT);
-        lbTotalFifty.setText("$250");
-
-        btCalculate.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        btCalculate.setText("Calcular");
-        btCalculate.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btCalculate.setFont(new Font("Segoe UI", Font.PLAIN, 24));
+        btCalculate.setCursor(new Cursor(Cursor.HAND_CURSOR));
         btCalculate.addActionListener(l -> calculate());
 
-        lbTotal.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        lbTotal.setFont(new Font("Segoe UI", Font.BOLD, 36));
         lbTotal.setHorizontalAlignment(SwingConstants.CENTER);
-        lbTotal.setText("Total: $13.159.250");
 
-        javax.swing.GroupLayout pCenterLayout = new javax.swing.GroupLayout(pCenter);
+        design();
+        menuBar();
+        pack();
+        setLocationRelativeTo(null);
+    }
+
+    private void menuBar() {
+        final var menuBar = new JMenuBar();
+        final var menu = new JMenu("limpiar");
+        final var cleaner = new JMenuItem("todo");
+
+        cleaner.addActionListener(l -> controller.clean());
+
+        menu.add(cleaner);
+        menuBar.add(menu);
+
+        setJMenuBar(menuBar);
+    }
+
+    private JTextField textField(final String text) {
+        final var tf = new JTextField(text);
+
+        tf.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+        tf.setHorizontalAlignment(JTextField.RIGHT);
+
+        return tf;
+    }
+
+    private JLabel label(final String text, final String style) {
+        final var lb = new JLabel(style.contains("plain") ? "$" + text : text);
+
+        if (style.equalsIgnoreCase("title")) {
+            lb.setFont(new Font("Segoe UI", Font.BOLD, 24));
+            lb.setHorizontalAlignment(SwingConstants.CENTER);
+        } else if (style.equalsIgnoreCase("subtitle")) {
+            lb.setFont(new Font("Segoe UI", Font.BOLD, 18));
+            lb.setHorizontalAlignment(SwingConstants.CENTER);
+        } else if (style.equalsIgnoreCase("left_plain")) {
+            lb.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+            lb.setHorizontalAlignment(SwingConstants.LEFT);
+        } else if (style.equalsIgnoreCase("right_plain")) {
+            lb.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+            lb.setHorizontalAlignment(SwingConstants.RIGHT);
+        }
+
+        return lb;
+    }
+
+    // Code provided by Netbeans.
+    private void design() {
+        final var pCenterLayout = new GroupLayout(pCenter);
+
         pCenter.setLayout(pCenterLayout);
         pCenterLayout.setHorizontalGroup(
                 pCenterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -268,7 +152,7 @@ public class MainView extends JFrame {
                                                                         .addComponent(lbFiftyThousand, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                                                         .addComponent(lbTwentyThousand, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                                                         .addComponent(lbTenThousand, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                                        .addComponent(lbFIveThousand, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                                        .addComponent(lbFiveThousand, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                                                         .addComponent(lbTwoThousand, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                                                 .addGap(53, 53, 53)
                                                                 .addGroup(pCenterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -328,6 +212,7 @@ public class MainView extends JFrame {
                                         .addComponent(btCalculate, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addGap(39, 39, 39))
         );
+
         pCenterLayout.setVerticalGroup(
                 pCenterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(pCenterLayout.createSequentialGroup()
@@ -401,7 +286,7 @@ public class MainView extends JFrame {
                                                 .addGap(31, 31, 31)
                                                 .addGroup(pCenterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                                         .addComponent(tfFiveThousand, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                        .addComponent(lbFIveThousand)
+                                                        .addComponent(lbFiveThousand)
                                                         .addComponent(lbTotalFiveThousand))
                                                 .addGap(31, 31, 31)
                                                 .addGroup(pCenterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -416,30 +301,20 @@ public class MainView extends JFrame {
                                 .addContainerGap(50, Short.MAX_VALUE))
         );
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        final var layout = new GroupLayout(getContentPane());
+
         getContentPane().setLayout(layout);
+
         layout.setHorizontalGroup(
                 layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(pCenter, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
+
         layout.setVerticalGroup(
                 layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(pCenter, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
-
-        final var menuBar = new JMenuBar();
-        final var menu = new JMenu("limpiar");
-        final var cleaner = new JMenuItem("todo");
-
-        cleaner.addActionListener(l -> controller.clean());
-
-        menu.add(cleaner);
-        menuBar.add(menu);
-
-        setJMenuBar(menuBar);
-        pack();
-        setLocationRelativeTo(null);
-    }
+    } // End of code provided by Netbeans.
 
     private void calculate() {
         final var hundredThousandAmount = Integer.parseInt(tfHundredThousand.getText().strip());
@@ -487,48 +362,96 @@ public class MainView extends JFrame {
         return text -> "$" + text;
     }
 
-    public JTextField getTfFifty() {
+    public JTextField tfFifty() {
         return tfFifty;
     }
 
-    public JTextField getTfFiftyThousand() {
+    public JTextField tfFiftyThousand() {
         return tfFiftyThousand;
     }
 
-    public JTextField getTfFiveHundred() {
+    public JTextField tfFiveHundred() {
         return tfFiveHundred;
     }
 
-    public JTextField getTfFiveThousand() {
+    public JTextField tfFiveThousand() {
         return tfFiveThousand;
     }
 
-    public JTextField getTfHundredThousand() {
+    public JTextField tfHundredThousand() {
         return tfHundredThousand;
     }
 
-    public JTextField getTfOneHundred() {
+    public JTextField tfOneHundred() {
         return tfOneHundred;
     }
 
-    public JTextField getTfOneThousand() {
+    public JTextField tfOneThousand() {
         return tfOneThousand;
     }
 
-    public JTextField getTfTenThousand() {
+    public JTextField tfTenThousand() {
         return tfTenThousand;
     }
 
-    public JTextField getTfTwentyThousand() {
+    public JTextField tfTwentyThousand() {
         return tfTwentyThousand;
     }
 
-    public JTextField getTfTwoHundred() {
+    public JTextField tfTwoHundred() {
         return tfTwoHundred;
     }
 
-    public JTextField getTfTwoThousand() {
+    public JTextField tfTwoThousand() {
         return tfTwoThousand;
+    }
+
+    public JLabel lbTotal() {
+        return lbTotal;
+    }
+
+    public JLabel lbTotalFifty() {
+        return lbTotalFifty;
+    }
+
+    public JLabel lbTotalFiftyThousand() {
+        return lbTotalFiftyThousand;
+    }
+
+    public JLabel lbTotalFiveHundred() {
+        return lbTotalFiveHundred;
+    }
+
+    public JLabel lbTotalFiveThousand() {
+        return lbTotalFiveThousand;
+    }
+
+    public JLabel lbTotalHundredThousand() {
+        return lbTotalHundredThousand;
+    }
+
+    public JLabel lbTotalOneHundred() {
+        return lbTotalOneHundred;
+    }
+
+    public JLabel lbTotalOneThousand() {
+        return lbTotalOneThousand;
+    }
+
+    public JLabel lbTotalTenThousand() {
+        return lbTotalTenThousand;
+    }
+
+    public JLabel lbTotalTwentyThousand() {
+        return lbTotalTwentyThousand;
+    }
+
+    public JLabel lbTotalTwoHundred() {
+        return lbTotalTwoHundred;
+    }
+
+    public JLabel lbTotalTwoThousand() {
+        return lbTotalTwoThousand;
     }
 
 }

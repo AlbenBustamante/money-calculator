@@ -19,17 +19,17 @@ public class CashController {
     }
 
     public void clean() {
-        view.getTfHundredThousand().setText("0");
-        view.getTfFiftyThousand().setText("0");
-        view.getTfTwentyThousand().setText("0");
-        view.getTfTenThousand().setText("0");
-        view.getTfFiveThousand().setText("0");
-        view.getTfTwoThousand().setText("0");
-        view.getTfOneThousand().setText("0");
-        view.getTfFiveHundred().setText("0");
-        view.getTfTwoHundred().setText("0");
-        view.getTfOneHundred().setText("0");
-        view.getTfFifty().setText("0");
+        view.tfHundredThousand().setText("0");
+        view.tfFiftyThousand().setText("0");
+        view.tfTwentyThousand().setText("0");
+        view.tfTenThousand().setText("0");
+        view.tfFiveThousand().setText("0");
+        view.tfTwoThousand().setText("0");
+        view.tfOneThousand().setText("0");
+        view.tfFiveHundred().setText("0");
+        view.tfTwoHundred().setText("0");
+        view.tfOneHundred().setText("0");
+        view.tfFifty().setText("0");
     }
 
 }
