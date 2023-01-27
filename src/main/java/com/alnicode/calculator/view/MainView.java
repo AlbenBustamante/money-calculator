@@ -4,7 +4,6 @@ import com.alnicode.calculator.controller.CashController;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.function.Function;
 
 public class MainView extends JFrame {
 
@@ -79,7 +78,13 @@ public class MainView extends JFrame {
 
         btCalculate.setFont(new Font("Segoe UI", Font.PLAIN, 24));
         btCalculate.setCursor(new Cursor(Cursor.HAND_CURSOR));
-        btCalculate.addActionListener(l -> calculate());
+        btCalculate.addActionListener(l -> {
+            try {
+                controller.calculate();
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        });
 
         design();
         menuBar();
@@ -309,52 +314,6 @@ public class MainView extends JFrame {
                         .addComponent(pCenter, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
     } // End of code provided by Netbeans.
-
-    private void calculate() {
-        final var hundredThousandAmount = Integer.parseInt(tfHundredThousand.getText().strip());
-        final var fiftyThousandAmount = Integer.parseInt(tfFiftyThousand.getText().strip());
-        final var twentyThousandAmount = Integer.parseInt(tfTwentyThousand.getText().strip());
-        final var tenThousandAmount = Integer.parseInt(tfTenThousand.getText().strip());
-        final var fiveThousandAmount = Integer.parseInt(tfFiveThousand.getText().strip());
-        final var twoThousandAmount = Integer.parseInt(tfTwoThousand.getText().strip());
-        final var oneThousandAmount = Integer.parseInt(tfOneThousand.getText().strip());
-        final var fiveHundredAmount = Integer.parseInt(tfFiveHundred.getText().strip());
-        final var twoHundredAmount = Integer.parseInt(tfTwoHundred.getText().strip());
-        final var oneHundredAmount = Integer.parseInt(tfOneHundred.getText().strip());
-        final var fiftyAmount = Integer.parseInt(tfFifty.getText().strip());
-
-        final var hundredThousand = hundredThousandAmount * 100000;
-        final var fiftyThousand = fiftyThousandAmount * 50000;
-        final var twentyThousand = twentyThousandAmount * 20000;
-        final var tenThousand = tenThousandAmount * 10000;
-        final var fiveThousand = fiveThousandAmount * 5000;
-        final var twoThousand = twoThousandAmount * 2000;
-        final var oneThousand = oneThousandAmount * 1000;
-        final var fiveHundred = fiveHundredAmount * 500;
-        final var twoHundred = twoHundredAmount * 200;
-        final var oneHundred = oneHundredAmount * 100;
-        final var fifty = fiftyAmount * 50;
-
-        final var total = hundredThousand + fiftyThousand + twentyThousand + tenThousand + fiveThousand + twoThousand +
-                oneThousand + fiveHundred + twoHundred + oneHundred + fifty;
-
-        lbTotalHundredThousand.setText(toCurrency().apply(hundredThousand));
-        lbTotalFiftyThousand.setText(toCurrency().apply(fiftyThousand));
-        lbTotalTwentyThousand.setText(toCurrency().apply(twentyThousand));
-        lbTotalTenThousand.setText(toCurrency().apply(tenThousand));
-        lbTotalFiveThousand.setText(toCurrency().apply(fiveThousand));
-        lbTotalTwoThousand.setText(toCurrency().apply(twoThousand));
-        lbTotalOneThousand.setText(toCurrency().apply(oneThousand));
-        lbTotalFiveHundred.setText(toCurrency().apply(fiveHundred));
-        lbTotalTwoHundred.setText(toCurrency().apply(twoHundred));
-        lbTotalOneHundred.setText(toCurrency().apply(oneHundred));
-        lbTotalFifty.setText(toCurrency().apply(fifty));
-        lbTotal.setText(toCurrency().apply(total));
-    }
-
-    private Function<Integer, String> toCurrency() {
-        return text -> "$" + text;
-    }
 
     public JTextField tfFifty() {
         return tfFifty;
