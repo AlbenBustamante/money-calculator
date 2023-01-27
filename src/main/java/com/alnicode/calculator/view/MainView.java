@@ -115,18 +115,19 @@ public class MainView extends JFrame {
     private JLabel label(final String text, final String style) {
         final var lb = new JLabel(style.contains("plain") ? "$" + text : text);
 
-        if (style.equalsIgnoreCase("title")) {
-            lb.setFont(new Font("Segoe UI", Font.BOLD, 24));
-            lb.setHorizontalAlignment(SwingConstants.CENTER);
-        } else if (style.equalsIgnoreCase("subtitle")) {
-            lb.setFont(new Font("Segoe UI", Font.BOLD, 18));
-            lb.setHorizontalAlignment(SwingConstants.CENTER);
-        } else if (style.equalsIgnoreCase("left_plain")) {
-            lb.setFont(new Font("Segoe UI", Font.PLAIN, 14));
-            lb.setHorizontalAlignment(SwingConstants.LEFT);
-        } else if (style.equalsIgnoreCase("right_plain")) {
-            lb.setFont(new Font("Segoe UI", Font.PLAIN, 14));
-            lb.setHorizontalAlignment(SwingConstants.RIGHT);
+        lb.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+
+        switch (style) {
+            case "title" -> {
+                lb.setFont(new Font("Segoe UI", Font.BOLD, 24));
+                lb.setHorizontalAlignment(SwingConstants.CENTER);
+            }
+            case "subtitle" -> {
+                lb.setFont(new Font("Segoe UI", Font.BOLD, 18));
+                lb.setHorizontalAlignment(SwingConstants.CENTER);
+            }
+            case "left_plain" -> lb.setHorizontalAlignment(SwingConstants.LEFT);
+            case "right_plain" -> lb.setHorizontalAlignment(SwingConstants.RIGHT);
         }
 
         return lb;
